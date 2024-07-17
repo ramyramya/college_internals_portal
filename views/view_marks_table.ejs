@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Table</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<!-- Custom CSS -->
+<style>
+    /* Styles for table */
+    table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+    }
+
+    th,
+    td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #6c757d;
+        color: #fff;
+        border-bottom: 2px solid #dee2e6;
+        text-align: center;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    tbody tr:hover {
+        background-color: #e9ecef;
+    }
+
+    /* Additional colorful styles */
+    th:nth-child(1) {
+        background-color: #007bffd7; /* Blue */
+    }
+
+    th:nth-child(2) {
+        background-color: #28a746e0; /* Green */
+    }
+
+    th:nth-child(3) {
+        background-color: #dc3546d8; /* Red */
+    }
+
+    th:nth-child(4) {
+        background-color: #ffc107c1; /* Yellow */
+    }
+</style>
+
+<body>
+    <div class="container mt-5">
+        <h2>Marks Table</h2>
+        
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Section</th>
+                        <th><%= subject %> Mid <%= mid %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(function(row) { %>
+                        <tr>
+                            <td><%= row.Roll_no %></td>
+                            <td><%= row.Student_name %></td>
+                            <td><%= row.Section %></td>
+                            <td><%= row[subject + '_mid' + mid] %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!-- views/edit_faculty.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Faculty</title>
+</head>
+<body>
+   
+    <h1>Edit Faculty</h1>
+    <% if (message && message.length > 0) { %>
+        <% message.forEach(msg => { %>
+            <div class="alert alert-<%= msg.type === 'error' ? 'danger' : 'success' %>" role="alert">
+                <%= msg.text %>
+            </div>
+        <% }); %>
+    <% } %>
+    <form action="/edit_faculty" method="POST">
+        <label for="facultyId">Faculty ID:</label>
+        <input type="text" id="facultyId" name="facultyId" required><br><br>
+        
+        <label for="facultyName">Faculty Name:</label>
+        <input type="text" id="facultyName" name="facultyName" required><br><br>
+
+        <label for="year">Year:</label>
+        <select id="year" name="year" required>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+        </select><br><br>
+
+        <label for="semester">Semester:</label>
+        <select id="semester" name="semester" required>
+            <option value="1">1st Semester</option>
+            <option value="2">2nd Semester</option>
+        </select><br><br>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required><br><br>
+
+        <button type="submit">Update Faculty</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!-- views/add_faculty.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Faculty</title>
+</head>
+<body>
+    
+    <h1>Add Faculty</h1>
+   
+
+    <form action="/add_faculty" method="POST">
+        <label for="facultyId">Faculty ID:</label>
+        <input type="text" id="facultyId" name="facultyId"><br><br>
+        
+        <label for="facultyName">Faculty Name:</label>
+        <input type="text" id="facultyName" name="facultyName"><br><br>
+
+        <label for="year">Year:</label>
+        <select id="year" name="year">
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+        </select><br><br>
+
+        <label for="semester">Semester:</label>
+        <select id="semester" name="semester">
+            <option value="1">1st Semester</option>
+            <option value="2">2nd Semester</option>
+        </select><br><br>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject"><br><br>
+
+        <button type="submit">Add Faculty</button>
+    </form>
+</body>
+</html>

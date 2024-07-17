@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Table</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<!-- Custom CSS -->
+<!-- Custom CSS -->
+<style>
+    /* Styles for table */
+    table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+    }
+
+    th,
+    td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #007bff; /* Blue */
+        color: #fff;
+        border-bottom: 2px solid #dee2e6;
+        text-align: center;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f8f9fa; /* Light gray */
+    }
+
+    tbody tr:hover {
+        background-color: #e9ecef; /* Lighter gray */
+    }
+
+    /* Form styles */
+    form {
+        margin-top: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    /* Button styles */
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+    }
+
+    .btn-primary {
+        background-color: #28a745; /* Green */
+        border-color: #28a745;
+    }
+
+    .btn-primary:hover {
+        background-color: #218838; /* Darker green */
+        border-color: #1e7e34;
+    }
+
+    /* Additional colorful styles */
+    th:nth-child(2) {
+        background-color: #dc3546c8; /* Red */
+    }
+
+    th:nth-child(3) {
+        background-color: #ffc107bc; /* Yellow */
+    }
+
+    th:nth-child(4) {
+        background-color: #6610f2; /* Purple */
+    }
+
+    th:nth-child(1) {
+        background-color: #17a3b8c9; /* Teal */
+    }
+
+    th:nth-child(5) {
+        background-color: #fd7e14; /* Orange */
+    }
+
+    th:nth-child(6) {
+        background-color: #6f42c1; /* Indigo */
+    }
+</style>
+
+<body>
+   
+    
+    <div class="container mt-5">
+        <h2>Marks Table</h2>
+        <form id="marksForm" action="/update_marks" method="POST">
+            <!-- Hidden inputs for metadata -->
+            <input type="hidden" name="metadata[year]" value="<%= year %>">
+            <input type="hidden" name="metadata[semester]" value="<%= semester %>">
+            <input type="hidden" name="metadata[mid]" value="<%= mid %>">
+            <input type="hidden" name="metadata[subject]" value="<%= subject %>">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th><%= subject %> Mid <%= mid %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(function(row) { %>
+                        <tr>
+                            <td><%= row.Roll_no %></td>
+                            <td><%= row.Student_name %></td>
+                            <!-- Editable cell for marks -->
+                            <td contenteditable="true">
+                                <input type="number" name="<%= row.Roll_no %>" value="<%= row[subject + '_mid' + mid] %>">
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Update Marks</button>
+        </form>
+    </div>
+
+    
+</body>
+</html>

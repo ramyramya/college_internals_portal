@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Middle Man Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+          
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+       
+        .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+}
+        .sidebar {
+            width: 20%;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        
+        .button {
+    background-color: #4c88adc7;
+    border: none;
+    color: white;
+    padding: 50px 80px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+        .button:hover {
+            background-color: #45a049f1;
+        }
+
+        .button1 {
+    background-color: #8ee571f2;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+        .button1:hover {
+            background-color: #45a049;
+        }
+
+
+        .section
+{
+    margin-top: 200px;
+}
+
+
+        img{
+            width:40px;
+            height: 40px;
+        }
+        #papersContainer {
+    display: flex;
+    justify-content: center; /* Align items horizontally */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    margin-left: 20px; /* Adjust the left margin as needed */
+}
+
+.paper-image {
+    width: 200px; /* Adjust the width to your desired size */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px; /* Add some margin for spacing */
+    margin-left: 500px;
+}
+
+    </style>
+</head>
+<body>
+    
+
+    <header class="header">
+        <a href="/" class="button1">HOME</a>
+        <h1>Welcome to the Middleman Dashboard</h1>
+        <a href="/middle/logout" class="button1" style="background-color: #ff4d4d;">Logout</a>
+
+    </header>
+    <div class="section">
+        
+        <button class="button" data-toggle="modal" data-target="#viewSelectedPapersModal">View selected Question paper</button>
+        
+    </div>
+    
+    <div id="papersContainer" class="container mt-5">
+        <!-- PDF links will be dynamically added here -->
+    </div>
+
+        <!-- Bootstrap Modal -->
+        <div class="modal fade" id="addSubjectsModal" tabindex="-1" role="dialog" aria-labelledby="addSubjectsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addSubjectsModalLabel">Add Subjects to Curriculum</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/add_subjects" method="POST">
+                            <div class="form-group">
+                                <label for="year">Year:</label>
+                                <select id="year" name="year" class="form-control">
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4">4th Year</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="semester">Semester:</label>
+                                <select id="semester" name="semester" class="form-control">
+                                    <option value="1">1st Semester</option>
+                                    <option value="2">2nd Semester</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject1">Subject 1:</label>
+                                <input type="text" class="form-control" id="subject1" name="subject1" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject2">Subject 2:</label>
+                                <input type="text" class="form-control" id="subject2" name="subject2" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject3">Subject 3:</label>
+                                <input type="text" class="form-control" id="subject3" name="subject3" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject4">Subject 4:</label>
+                                <input type="text" class="form-control" id="subject4" name="subject4" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject5">Subject 5:</label>
+                                <input type="text" class="form-control" id="subject5" name="subject5" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject6">Subject 6:</label>
+                                <input type="text" class="form-control" id="subject6" name="subject6" value="">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="viewPapersModal" tabindex="-1" role="dialog" aria-labelledby="viewPapersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewPapersModalLabel">View Papers</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Folder Icon" class="img-fluid year-folder" data-year="1" data-toggle="modal" data-target="#semesterFoldersModal">
+                            <p>Year 1</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Folder Icon" class="img-fluid year-folder" data-year="2" data-toggle="modal" data-target="#semesterFoldersModal">
+                            <p>Year 2</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Folder Icon" class="img-fluid year-folder" data-year="3" data-toggle="modal" data-target="#semesterFoldersModal">
+                            <p>Year 3</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Folder Icon" class="img-fluid year-folder" data-year="4" data-toggle="modal" data-target="#semesterFoldersModal">
+                            <p>Year 4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="viewSelectedPapersModal" tabindex="-1" role="dialog" aria-labelledby="viewPapersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewPapersModalLabel">View Papers</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Folder Icon" class="img-fluid year-folder" data-year="1" data-toggle="modal" data-target="#semesterFoldersModal">
+                            <p>Year 1</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Folder Icon" class="img-fluid year-folder" data-year="2" data-toggle="modal" data-target="#semesterFoldersModal">
+                            <p>Year 2</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Folder Icon" class="img-fluid year-folder" data-year="3" data-toggle="modal" data-target="#semesterFoldersModal">
+                            <p>Year 3</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Folder Icon" class="img-fluid year-folder" data-year="4" data-toggle="modal" data-target="#semesterFoldersModal">
+                            <p>Year 4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <!-- Bootstrap Modal for Semester Folders -->
+    <div class="modal fade" id="semesterFoldersModal" tabindex="-1" role="dialog" aria-labelledby="semesterFoldersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="semesterFoldersModalLabel">Semester Folders</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Semester 1 Folder" class="img-fluid semester-folder" data-semester="1" data-toggle="modal" data-target="#midFoldersModal">
+                            <p>Semester 1</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Semester 2 Folder" class="img-fluid semester-folder" data-semester="2" data-toggle="modal" data-target="#midFoldersModal">
+                            <p>Semester 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal for Mid Folders -->
+    <div class="modal fade" id="midFoldersModal" tabindex="-1" role="dialog" aria-labelledby="midFoldersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="midFoldersModalLabel">Mid Folders</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Mid 1 Folder" class="img-fluid mid-folder" data-mid="1" data-toggle="modal" data-target="#subjectFoldersModal">
+                            <p>Mid 1</p>
+                        </div>
+                        <div class="col-md-3">
+                            <img src="/images/folder.jpg" alt="Mid 2 Folder" class="img-fluid mid-folder" data-mid="2" data-toggle="modal" data-target="#subjectFoldersModal">
+                            <p>Mid 2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal for Subject Folders -->
+    <div class="modal fade" id="subjectFoldersModal" tabindex="-1" role="dialog" aria-labelledby="subjectFoldersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subjectFoldersModalLabel">Subject Folders</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="subjectFoldersContent">
+                        <!-- Subject folders will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Your JavaScript logic -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var selectedYear;
+            var selectedSemester;
+            var selectedMid;
+            var selectedSubject;
+        
+            $('#viewPapersModal').on('show.bs.modal', function(event) {
+                selectedYear = null;
+                selectedSemester = null;
+                selectedMid = null;
+                console.log('Selected Year:', selectedYear);
+                console.log('Selected Semester:', selectedSemester);
+                console.log('Selected Mid:', selectedMid);
+            });
+
+            $('#viewSelectedPapersModal').on('show.bs.modal', function(event) {
+                selectedYear = null;
+                selectedSemester = null;
+                selectedMid = null;
+                console.log('Selected Year:', selectedYear);
+                console.log('Selected Semester:', selectedSemester);
+                console.log('Selected Mid:', selectedMid);
+            });
+        
+            $('.year-folder').click(function() {
+                selectedYear = $(this).data('year');
+                console.log('Selected Year:', selectedYear);
+                $('#viewPapersModal').modal('hide');
+            });
+        
+            $('.semester-folder').click(function() {
+                selectedSemester = $(this).data('semester');
+                console.log('Selected Semester:', selectedSemester);
+                $('#semesterFoldersModal').modal('hide');
+            });
+        
+            $('.mid-folder').click(function() {
+                selectedMid = $(this).data('mid');
+                console.log('Selected Mid:', selectedMid);
+                $('#midFoldersModal').modal('hide');
+                fetchSubjects(selectedYear, selectedSemester, selectedMid);
+            });
+        
+            // Using event delegation for dynamically generated elements
+            $(document).on('click', '.subject-folder', function() {
+                selectedSubject = $(this).data('subject');
+                console.log('Selected Subject:', selectedSubject);
+                $('#subjectFoldersModal').modal('hide');
+                fetchQuestionPapers(selectedYear, selectedSemester, selectedMid, selectedSubject);
+            });
+        
+            function fetchSubjects(year, semester, mid) {
+                $.ajax({
+                    url: '/fetch_subjects',
+                    method: 'POST',
+                    data: { year: year, semester: semester, mid: mid },
+                    success: function(response) {
+                        populateSubjectFolders(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching subjects:', error);
+                    }
+                });
+            }
+        
+            function populateSubjectFolders(subjects) {
+                var folderContent = $('#subjectFoldersContent');
+                folderContent.empty();
+                subjects.forEach(function(subject) {
+                    var folderElement = $('<div class="col-md-3"><img src="/images/folder.jpg" alt="' + subject + ' Folder" class="img-fluid subject-folder" data-subject="' + subject + '"><p>' + subject + '</p></div>');
+                    folderContent.append(folderElement);
+                });
+            }
+        
+            function fetchQuestionPapers(year, semester, mid, subject) {
+    $.ajax({
+        url: '/fetch_question_papers',
+        method: 'POST',
+        data: { year: year, semester: semester, mid: mid, subject: subject },
+        success: function(response) {
+            // Select the container element to append the paper
+            var container = $('#papersContainer');
+            // Clear previous content
+            container.empty();
+            // Check if any paper is received
+            if (response.length > 0) {
+                console.log('Question paper URL:', response[0]);
+                // Append the paper URL to the container
+                container.append('<a href="/' + response[0] + '" target="_blank"><img src="/' + response[0] + '" class="paper-image"></a>');
+            } else {
+                container.append('<p>No question paper found.</p>');
+                console.log('No question paper found.');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching question paper:', error);
+        }
+    });
+}
+
+
+
+        });
+        </script>
+        
+    
+    
+</body>
+</html>
